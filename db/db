@@ -6,10 +6,10 @@ const seq = `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${proc
 
 console.log(seq)
 
-const sequelize = new Sequelize(seq)
+export const sequelize = new Sequelize(seq)
 export const connection = async (req, res) => {
     try {
-        // metodo connect é o que tenta a conexao com o db
+        // metodo authenticate é o que tenta a conexao com o db
         await sequelize.authenticate();
         console.log("PostgreSQL conectado com sucesso!");
     } catch (err) {
