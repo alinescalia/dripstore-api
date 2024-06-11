@@ -1,17 +1,22 @@
 import express from "express"
-import { connection } from "./db/db"
-import { produtoRoute } from "./Routes/produtos.routes.js"
+import { routes } from "./Routes/index.js"
+import { connection } from "./db/db.js"
+
 
 const app = express()
 const port = 3000
 
 connection()
 
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-produtoRoute(app)
+routes(app)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

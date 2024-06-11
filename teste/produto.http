@@ -1,0 +1,34 @@
+GET http://127.0.0.1:3000/api/produto/
+###
+
+GET http://127.0.0.1:3000/api/produto/2
+
+###
+
+POST  http://127.0.0.1:3000/api/produto
+Content-Type: application/json
+
+{
+    "preco": 99,
+    "nome": "Produto Teste agora denovo?",
+    "descricao": "nick Descrição do produto teste",   
+    "desconto": 0,    
+    "categoria": "Teste"
+}
+
+###
+
+PATCH   http://127.0.0.1:3000/api/produto/2
+Content-Type: application/json
+
+{
+    "nome": "Produto super novo"
+
+}
+
+###
+
+
+
+
+

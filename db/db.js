@@ -16,3 +16,12 @@ export const connection = async (req, res) => {
         console.log('Erro ao conectar com o banco:', err);
     }
 }
+
+sequelize.sync({ force: true })
+    .then(() => {
+        console.log('DROP e sincronizar o db');
+    })
+    .catch((error) => {
+        console.log('Erro ao sincronizar');
+
+    })
