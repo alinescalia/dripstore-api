@@ -17,11 +17,11 @@ export const connection = async (req, res) => {
     }
 }
 
-sequelize.sync({ force: true })
-    .then(() => {
-        console.log('DROP e sincronizar o db');
-    })
-    .catch((error) => {
-        console.log('Erro ao sincronizar');
+// sequelize.sync({ force: true })
+//     .then(() => {
+//         console.log('DROP e sincronizar o db');
+//     })
+//     .catch((error) => {
+//         console.log('Erro ao sincronizar');
 
-    })
+//     })

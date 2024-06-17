@@ -19,6 +19,8 @@ export const ProdutoService = {
             return res.status(404).json({
                 message: `Produto id: ${id} nao encontrado!`
             })
+        } else {
+            return res.json(produto)
         }
     },
 
@@ -30,9 +32,14 @@ export const ProdutoService = {
 
         try {
             const produtobd = await Produto.create(produto)
-            res.send('Novo produto criado!').json(produtobd)
+            res.json({
+                message: 'NOVO PRODUTO CRIADO',
+                newprod: produtobd
+
+            })
         }
-        catch {
+        catch (err) {
+            console.log(err)
             console.log('Falha ao criar produto!')
             res.status(500).send('Erro ao criar produto')
         }
@@ -43,25 +50,50 @@ export const ProdutoService = {
         const id = req.params.id;
 
         try {
-            const produpdated = await Produto.update(produto, {
+            const [rowcount, [produpdated]] = await Produto.update(produto, {
                 where: {
                     id: id
-                }
+                },
+                returning: true
             })
-            res.status(200).json({
-                mensagem: `Produto ${id} atualizado!`,
-                data: produpdate
+            if (!produpdated) {
+                res.status(200).send(`Produto id=${id} não existe!`)
+            } else {
+
+                res.status(200).json({
+                    mensagem: 'Produto atualizado!',
+                    data: produpdated
+                })
             }
-            )
 
         }
-        catch {
+        catch (ex) {
+            console.log(ex)
             res.status(500).send('Produto nao pode ser atualizado!')
         }
 
+    },
+    delete: async (req, res) => {
+        const id = req.params.id
+
+
+        try {
+            const prod = await Produto.destroy({
+                where: {
+                    id: id
+                }
+
+            })
+            if (prod) {
+                res.status(200).json({ message: `Produto id=${id} DELETADO` })
+            }
+            else {
+                res.status(404).send(`Produto id=${id} NAO encontrado`)
+            }
+        }
+        catch (err) {
+            console.log(err)
+            res.status(500).send('Erro ao deletar produto')
+        }
     }
-
-
-
-
 }

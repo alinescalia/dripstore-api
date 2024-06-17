@@ -1,1 +1,28 @@
 GET http://127.0.0.1:3000/api/usuario/
+
+###
+
+GET http://127.0.0.1:3000/api/usuario/2
+
+###
+
+POST http://127.0.0.1:3000/api/usuario
+Content-Type: application/json
+
+{
+    "nome": "aline",
+    "email": "teste",
+    "senha": "teste"
+}
+
+###
+
+PATCH http://127.0.0.1:3000/api/usuario/3
+Content-Type: application/json
+
+{"nome": "Nick"}
+
+###
+
+DELETE http://127.0.0.1:3000/api/usuario/2
+

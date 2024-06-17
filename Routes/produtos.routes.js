@@ -7,6 +7,7 @@ routerProduto
     .get('/', ProdutoService.getALL)
     .get('/:id', ProdutoService.getbyID)
     .post('/', ProdutoService.create)
-    .patch('/:id', ProdutoService.update);
+    .patch('/:id', ProdutoService.update)
+    .delete('/:id', ProdutoService.delete)
 
 export default routerProduto; 
