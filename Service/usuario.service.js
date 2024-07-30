@@ -60,7 +60,7 @@ export const UsuarioService = {
         const user = req.body
 
         try {
-            const [afeectedrow, userbd] = await Usuarios.update(user, {
+            const [afeectedrow, [userbd]] = await Usuarios.update(user, {
                 where: { id: id },
                 returning: true
             })

@@ -25,3 +25,26 @@ export const connection = async (req, res) => {
 //         console.log('Erro ao sincronizar');
 
 //     })
+
+const iniciarperfil = async (req, res) => {
+    const perfil = await db.perfil.findAll();
+
+    if (!perfil) {
+        db.perfil.bulkCreate([{
+            nome: 'usuario',
+            codigo: 'USER'
+        },
+        {
+            nome: 'moderador',
+            codigo: 'MOD'
+        },
+        {
+            nome: 'administrador',
+            codigo: 'ADMIN'
+        }
+        ])
+    } else {
+        res.send('Perfil ja existe')
+    }
+}
+
